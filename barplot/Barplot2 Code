@@ -1,0 +1,50 @@
+df_Continent=df.groupby("Continent")["Ladder_Score"].mean().sort_values(ascending=False).reset_index()
+
+colors = ['rgba(38, 24, 74, 0.8)', 'rgba(71, 58, 131, 0.8)',
+          'rgba(122, 120, 168, 0.8)', 'rgba(164, 163, 204, 0.85)',
+          'rgba(190, 192, 213, 1)']
+
+fig=px.bar(df_Continent,
+                 x="Ladder_Score", y="Continent",
+                orientation="h",
+                width=800,
+                height=400,
+                template="ggplot2")
+
+fig.update_layout(title="Happiness Score of Continents",
+                 font_family="San Serif",
+                 bargap=0.2,
+                 barmode="group",
+                 titlefont={"size":20},
+                 paper_bgcolor="lightgray",
+                 plot_bgcolor="lightgray")
+
+annotations = []
+annotations.append(dict(xref='paper', yref='paper',
+                        x=0.0, y=1.2,
+                        text='It is based on averages.',
+                             font=dict(family='Arial', size=16, color=colors[2]),
+                        showarrow=False))
+
+fig.update_xaxes(title_text="Ladder Score")
+
+fig.update_layout(
+    autosize=False,
+    width=600,
+    height=350,
+    margin=dict(
+        l=50,
+        r=50,
+        b=50,
+        t=120,
+    ),
+)
+fig.update_traces(marker_color=colors,
+                 marker_line_color="black",
+                 marker_line_width=2.5,
+                 opacity=None)
+
+fig.update_layout(annotations=annotations)
+fig.update_xaxes(showgrid=False)
+fig.update_yaxes(showgrid=False)
+fig.show()
