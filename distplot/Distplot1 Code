@@ -1,0 +1,6 @@
+happiest_75=df.sort_values(by="Ladder_Score", ascending=False)[:75]
+unhappiest_75=df.sort_values(by="Ladder_Score", ascending=True)[:75]
+
+import plotly.figure_factory as ff
+fig=ff.create_distplot([happiest_75.Ladder_Score], ["Ladder_Score"],bin_size=.2)
+iplot(fig)
