@@ -1,0 +1,24 @@
+df_corr=df[["Country", "Continent","Ladder_Score", "GDP_Per_capita", "Social_Support", "Life_Expectancy"]]
+
+fig=px.scatter(df_corr,
+              x="Life_Expectancy",
+              y="GDP_Per_capita",
+              color="Continent",
+               size="Ladder_Score",
+              width=800,
+              height=400,
+              title="Correlation Between GDP and Ladder Score")
+
+fig.update_layout(title="Correlation Between Life Expectancy and GDP",
+                 font_family="San Serif",
+                 bargap=0.2,
+                 barmode="group",
+                 titlefont={"size":20},
+                 paper_bgcolor="lightgray",
+                 plot_bgcolor="lightgray")
+
+fig.update_xaxes(showgrid=False)
+fig.update_yaxes(showgrid=False)
+
+
+fig.show()
