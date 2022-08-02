@@ -1,0 +1,23 @@
+benzema=players_22[players_22["short_name"]=="K. Benzema"]
+
+fig = go.Figure()
+
+fig.add_trace(go.Indicator(
+    mode="number+gauge+delta", value=benzema["defending"].values[0],
+    delta={"reference":71}, #71 is the median defending of the data, players_22["defending"].median() 
+    gauge={
+        
+        "axis":{"range":[None, 100]},
+        'steps': [
+            {'range': [0, 71], 'color': "gray"},
+            {'range': [71, 100], 'color': "lightgray"}],
+        'bar': {'color': "red"}},
+    title={"text":"Defending"}
+    ))
+fig.update_layout(title="Karim Benzema",
+                 font_family="San Serif",
+                 bargap=0.2,
+                 barmode="group",
+                 titlefont={"size":20},
+                 paper_bgcolor="seashell") #moccasin, whitesmoke, palegoldenrod, seashell, azure
+fig.show()
