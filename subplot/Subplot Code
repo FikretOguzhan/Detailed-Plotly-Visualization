@@ -1,0 +1,40 @@
+df_new=df.groupby("Continent")["Ladder_Score", "Life_Expectancy", "GDP_Per_capita"].mean().reset_index()
+
+from plotly.subplots import make_subplots
+
+fig=go.Figure()
+
+fig.add_trace(go.Bar(
+    x=df_new["Continent"],
+    y=df_new["Ladder_Score"],
+    name="Ladder Score",
+    marker_color="gray",
+    yaxis="y1"))
+
+fig.add_trace(go.Scatter(
+    x=df_new['Continent'],
+    y=df_new['GDP_Per_capita'],
+    name='GDP_Per_capita',
+    mode='markers+text+lines',
+    marker_color='red',
+    marker_size=10,
+    line=dict(color='yellow',dash='dash'),
+    yaxis='y2'
+
+))
+
+fig.update_layout(title="Ladder Score and GDP",
+                 xaxis_title="Continent",
+                yaxis_title="Ladder Score and GDP",
+                template='ggplot2',
+                yaxis=dict(showgrid=False),
+                yaxis2=dict(overlaying='y',side="right"),
+                legend=dict(yanchor="top",
+                y=1.5,
+                xanchor="left",
+                x=1),
+                 font_family="San Serif",
+                 titlefont={"size":20},
+                 paper_bgcolor="lightgray",
+                 plot_bgcolor="lightgray")
+fig.show()
