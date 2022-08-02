@@ -1,0 +1,21 @@
+x=players[players["short_name"]=="Cristiano Ronaldo"]
+x=x[x["year"]==22]
+
+from plotly.offline import init_notebook_mode, iplot
+init_notebook_mode(connected=True)
+import plotly.graph_objs as go
+
+new_data=[go.Scatterpolar(
+    r=[x["pace"].values[0], x["shooting"].values[0], x["dribbling"].values[0],
+      x["defending"].values[0], x["passing"].values[0]],
+    theta=["pace", "shooting", "dribbling", "defending", "passing"],
+fill="toself")]
+
+layout=go.Layout(
+        title=go.layout.Title(text="Cristiano Ronaldo"),
+        polar={"radialaxis":{"visible":True}},
+        showlegend=True)
+
+fig = go.Figure(data=new_data, layout=layout)
+
+iplot(fig)
