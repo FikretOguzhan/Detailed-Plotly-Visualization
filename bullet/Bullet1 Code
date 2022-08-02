@@ -1,0 +1,73 @@
+fig = go.Figure()
+benzema=players_22[players_22["short_name"]=="K. Benzema"]
+
+
+fig.add_trace(go.Indicator(
+    mode="number+gauge+delta", value=benzema["shooting"].values[0],
+    delta={"reference":75}, #75 is the median shooting of the data, players_22["shooting"].median() 
+    title={"text":"Shooting"},
+    domain = {'x': [0.25, 1], 'y': [0.05, 0.2]},
+    gauge={
+        'shape': "bullet",
+        "axis":{"range":[None, 100]},
+        'steps': [
+            {'range': [0, 75], 'color': "gray"},
+            {'range': [75, 100], 'color': "lightgray"}],
+        'bar': {'color': "green"}}
+    
+    ))
+
+
+fig.add_trace(go.Indicator(
+    mode="number+gauge+delta", value=benzema["pace"].values[0],
+    delta={"reference":78}, #78 is the median pace of the data, players_22["pace"].median() 
+    title={"text":"Pace"},
+    domain = {'x': [0.25, 1], 'y': [0.3, 0.45]},
+   gauge={
+        'shape': "bullet",
+        "axis":{"range":[None, 100]},
+        'steps': [
+            {'range': [0, 78], 'color': "gray"},
+            {'range': [78, 100], 'color': "lightgray"}],
+        'bar': {'color': "orange"}}
+    ))
+    
+
+
+
+fig.add_trace(go.Indicator(
+    mode="number+gauge+delta", value=benzema["passing"].values[0],
+    delta={"reference":77}, #77 is the median passing of the data, players_22["passing"].median() 
+    gauge={
+        'shape': "bullet",
+        "axis":{"range":[None, 100]},
+        'steps': [
+            {'range': [0, 77], 'color': "gray"},
+            {'range': [77, 100], 'color': "lightgray"}],
+        'bar': {'color': "green"}},
+    title={"text":"Passing"},
+    domain = {'x': [0.25, 1], 'y': [0.55, 0.7]}
+    ))
+
+
+
+fig.add_trace(go.Indicator(
+    mode="number+gauge+delta", value=benzema["defending"].values[0],
+    delta={"reference":71}, #71 is the median defending of the data, players_22["defending"].median() 
+    gauge={
+        'shape': "bullet",
+        "axis":{"range":[None, 100]},
+        'steps': [
+            {'range': [0, 71], 'color': "gray"},
+            {'range': [71, 100], 'color': "lightgray"}],
+        'bar': {'color': "red"}},
+    title={"text":"Defending"},
+    domain={"x":[0.25,1], "y":[0.8,0.95]}
+    ))
+fig.update_layout(title="Karim Benzema",
+                 font_family="San Serif",
+                 bargap=0.2,
+                 barmode="group",
+                 titlefont={"size":25},
+                 paper_bgcolor="seashell") 
+fig.show()
