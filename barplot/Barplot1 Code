@@ -1,0 +1,33 @@
+happiest_20=df.groupby("Country")["Ladder_Score"].mean().sort_values(ascending=False)[:20].reset_index()
+unhappiest_20=df.groupby("Country")["Ladder_Score"].mean().sort_values(ascending=True)[:20].reset_index()
+hap_unhap=pd.concat([happiest_20[:5], unhappiest_20[:5]], axis=0)
+
+fig=px.bar(hap_unhap.sort_values(by="Ladder_Score", ascending=False),
+          x="Country", y="Ladder_Score",
+          width=800, height=400)
+
+
+fig.update_layout(title="Happiest and Unhappiest Countries",
+                 font_family="San Serif",
+                 titlefont={"size":20},
+                  legend=dict(
+                  orientation="v", 
+                  y=1, yanchor="top",
+                  x=1, xanchor="right"))
+
+
+fig.update_layout(paper_bgcolor="silver",
+                 plot_bgcolor="silver",
+                 showlegend=False)
+
+colors=["crimson"]*10
+for i in range(0,5):
+    colors[i]="lightseagreen"
+
+
+fig.update_traces(marker_color=colors,
+                 marker_line_color="black",
+                 marker_line_width=2.5,
+                 opacity=None)
+
+fig.show()
