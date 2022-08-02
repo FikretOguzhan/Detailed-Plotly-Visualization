@@ -1,0 +1,5 @@
+df_raw_countries=df.loc[~df["Iso_Codes"].str.contains("Unknown Code")]
+
+fig=px.choropleth(df_raw_countries, locations="Iso_Codes", color="Ladder_Score",
+                 hover_name="Country",color_continuous_scale=px.colors.sequential.Plasma,projection="natural earth")
+fig.show()
