@@ -1,0 +1,21 @@
+hist_data=[happiest_75["Ladder_Score"], unhappiest_75["Ladder_Score"]]
+labels=["Happiest Score", "Unhappiest Score"]
+colors=['#A6ACEC', '#63F5EF']
+
+fig = ff.create_distplot(hist_data, labels, bin_size=.1,
+                        colors=colors,
+                        show_rug=False)
+
+fig.update_layout(title_text="Ladder Score in Happiest and Unhappiest Countries")
+fig.show()
+
+
+hist_data=[happiest_75["Social_Support"], unhappiest_75["Social_Support"]]
+labels=["Happiest Score", "Unhappiest Score"]
+colors=['#A6ACEC', '#63F5EF']
+
+fig = ff.create_distplot(hist_data, labels, bin_size=.1,
+                        colors=colors,
+                        show_rug=False)
+fig.update_layout(title_text="Ladder Score in Happiest and Unhappiest Countries")
+fig.show()
